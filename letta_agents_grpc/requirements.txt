@@ -1,0 +1,19 @@
+# Core dependencies
+letta==0.1.0  # Adjust version as needed
+grpcio>=1.59.0
+protobuf>=4.24.0
+
+# Database
+sqlmodel>=0.0.8
+
+# Generated protobuf files dependencies
+google-api-core>=2.11.0
+
+# Type hints
+typing-extensions>=4.7.0
+
+# Note: tkinter is typically included with Python installation
+# If not present, install through system package manager:
+# sudo apt-get install python3-tk  # For Debian/Ubuntu
+# sudo dnf install python3-tkinter # For Fedora
+# brew install python-tk@3.x       # For macOS with Homebrew

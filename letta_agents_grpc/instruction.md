@@ -25,6 +25,7 @@ This project implements a gRPC-based communication layer for the Letta Agents fr
 ```
 letta_agents_grpc/
 ├── instruction.md                # Project documentation
+├── requirements.txt             # Project dependencies
 ├── multi_service.proto          # Protocol Buffer service definitions
 ├── multi_service_pb2.py         # Generated Protocol Buffer code
 ├── multi_service_pb2_grpc.py    # Generated gRPC code
