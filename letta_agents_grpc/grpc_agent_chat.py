@@ -1,6 +1,14 @@
 import tkinter as tk
 from tkinter import ttk, scrolledtext
 import threading
+import os
+import sys
+
+# Add the current directory to Python path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
+
 from letta import create_client, LLMConfig, EmbeddingConfig
 from grpc_memory import GrpcMemory
 
@@ -95,12 +103,21 @@ class GrpcAgentChatGUI:
                   command=self.delete_person).pack(side="left", expand=True, padx=2)
 
     def initialize_agent(self):
-        """Initialize the Letta client and create the agent"""
+        """Initialize the Letta client with custom memory"""
         try:
+            self.display_message("System", "Starting agent initialization...")
+            
             # Create Letta client
             self.client = create_client()
+            self.display_message("System", "Letta client created!")
             
-            # Configure LLM and embedding models
+            # trying to get the existing agent
+            self.agent_state = self.client.get_agent_by_name("db_agent")
+            if self.agent_state:
+                self.display_message("System", "Agent already exists!")
+                return
+            
+            # Configure LLM
             tool_llm = LLMConfig(
                 model="llama3-groq-8b-8192-tool-use-preview",
                 model_endpoint_type='groq',
@@ -110,6 +127,7 @@ class GrpcAgentChatGUI:
                 put_inner_thoughts_in_kwargs=True
             )
             
+            # Configure embeddings
             hf_embed = EmbeddingConfig(
                 embedding_model="letta-free",
                 embedding_endpoint_type="hugging-face",
@@ -117,21 +135,18 @@ class GrpcAgentChatGUI:
                 embedding_chunk_size=300,
                 embedding_endpoint="https://embeddings.memgpt.ai"
             )
-            
-            # Create GrpcMemory instance
+            self.display_message("System", "AI parts ready!")
+            # Simple memory initialization
             memory = GrpcMemory(
-                human="I am a database user",
-                persona="I am a database administrator assistant"
+                human="user",
+                persona="assistant"
             )
-            
-            # Load system prompt
-            with open("grpc_dbcrud_system_prompt.txt", "r") as f:
-                system_prompt = f.read()
+            self.display_message("System", "Configurations ready!")
             
             # Create the agent
             self.agent_state = self.client.create_agent(
                 name="db_agent",
-                system=system_prompt,
+                system="I am a database administrator assistant.",  # Simple system prompt for testing
                 memory=memory,
                 embedding_config=hf_embed,
                 llm_config=tool_llm
@@ -141,22 +156,23 @@ class GrpcAgentChatGUI:
             
         except Exception as e:
             self.display_message("System Error", f"Failed to initialize agent: {str(e)}")
+            if hasattr(e, '__cause__'):
+                self.display_message("System Error", f"Caused by: {str(e.__cause__)}")
 
     def send_message(self, message=None):
         """Send a message to the agent"""
         if message is None:
             message = self.message_input.get()
-            self.message_input.delete(0, tk.END)
-        
-        if not message:
-            return
             
-        self.display_message("You", message)
-        
-        # Send message to agent in a separate thread
-        threading.Thread(target=self.process_agent_response, 
-                       args=(message,), daemon=True).start()
-
+        if message.strip():
+            # Display user message
+            self.display_message("User", message)
+            self.message_input.delete(0, tk.END)
+            
+            # Process agent response in a separate thread
+            thread = threading.Thread(target=self.process_agent_response, args=(message,))
+            thread.start()
+            
     def process_agent_response(self, message):
         """Process the agent's response in a separate thread"""
         try:

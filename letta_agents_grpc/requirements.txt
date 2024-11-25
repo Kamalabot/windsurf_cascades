@@ -1,6 +1,7 @@
 # Core dependencies
-letta==0.1.0  # Adjust version as needed
+letta>=0.5.2  # Latest stable version
 grpcio>=1.59.0
+grpcio-tools>=1.59.0  # Added for proto compilation
 protobuf>=4.24.0
 
 # Database
