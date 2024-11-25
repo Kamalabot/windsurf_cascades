@@ -1,8 +1,8 @@
 use std::cmp::PartialEq;
 use std::convert::From;
 use std::fmt;
+use std::ops::Add;
 
-// Basic trait (similar to Python's ABC)
 trait Animal {
     fn make_sound(&self) -> String;
     fn describe(&self) -> String {
@@ -13,59 +13,48 @@ trait Animal {
     }
 }
 
-// Struct definition with more complete trait implementations
-#[derive(Debug, Clone)] // Similar to Python's __repr__ and copy functionality
+#[derive(Debug, Clone)]
 struct Dog {
     name: String,
     age: u8,
 }
 
-// Implementation block for Dog-specific methods (similar to regular Python methods)
-impl Dog {
-    // Constructor (similar to Python's __init__)
-    fn new(name: String, age: u8) -> Self {
-        Dog { name, age }
-    }
-}
-
-// Display trait implementation (similar to Python's __str__)
-impl fmt::Display for Dog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Dog {} is {} years old", self.name, self.age)
-    }
-}
-
-// PartialEq trait implementation (similar to Python's __eq__)
-impl PartialEq for Dog {
-    fn eq(&self, other: &Self) -> bool {
-        self.name == other.name && self.age == other.age
-    }
-}
-
-// Add trait implementation (similar to Python's __add__)
-impl std::ops::Add for Dog {
+impl Add for Dog {
     type Output = u8;
-
-    fn add(self, other: Self) -> Self::Output {
+    fn add(self, other: Dog) -> u8 {
         self.age + other.age
     }
 }
-
-// From trait implementation (similar to type conversion in Python)
 impl From<(String, u8)> for Dog {
     fn from(tuple: (String, u8)) -> Self {
         Dog::new(tuple.0, tuple.1)
     }
 }
 
-// Animal trait implementation
+impl Dog {
+    fn new(name: String, age: u8) -> Self {
+        Dog { name, age }
+    }
+}
+
+impl fmt::Display for Dog {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Dog {} is {} years old", self.name, self.age)
+    }
+}
+
 impl Animal for Dog {
     fn make_sound(&self) -> String {
         format!("Woof! My name is {}", self.name)
     }
 }
 
-// Cat struct with similar implementations
+impl PartialEq for Dog {
+    fn eq(&self, other: &Dog) -> bool {
+        self.name == other.name && self.age == other.age
+    }
+}
+
 #[derive(Debug, Clone)]
 struct Cat {
     name: String,
@@ -78,6 +67,12 @@ impl Cat {
     }
 }
 
+impl Animal for Cat {
+    fn make_sound(&self) -> String {
+        format!("Meow! My name is {}", self.name)
+    }
+}
+
 impl fmt::Display for Cat {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "Cat {} is {} years old", self.name, self.age)
@@ -85,18 +80,11 @@ impl fmt::Display for Cat {
 }
 
 impl PartialEq for Cat {
-    fn eq(&self, other: &Self) -> bool {
+    fn eq(&self, other: &Cat) -> bool {
         self.name == other.name && self.age == other.age
     }
 }
 
-impl Animal for Cat {
-    fn make_sound(&self) -> String {
-        format!("Meow! My name is {}", self.name)
-    }
-}
-
-// Shelter struct remains similar but with added functionality
 struct Shelter {
     animals: Vec<Box<dyn Animal>>,
 }
@@ -107,47 +95,15 @@ impl Shelter {
             animals: Vec::new(),
         }
     }
-
     fn add_animal(&mut self, animal: Box<dyn Animal>) {
         self.animals.push(animal);
-    }
-
-    fn describe_animals(&self) {
-        for animal in &self.animals {
-            println!("{}", animal.describe());
-        }
     }
 }
 
 fn main() {
     // Demonstrate various trait implementations
-    let dog1 = Dog::new(String::from("Buddy"), 3);
-    let dog2 = Dog::new(String::from("Max"), 5);
-    let cat = Cat::new(String::from("Whiskers"), 4);
-
-    // Display trait (str)
-    println!("Display trait: {}", dog1);
-
-    // Debug trait (repr)
-    println!("Debug trait: {:?}", dog1);
-
-    // PartialEq trait (eq)
-    println!("Are dogs equal? {}", dog1 == dog2);
-
-    // Add trait (add)
-    println!("Sum of dog ages: {}", dog1.clone() + dog2);
-
-    // From trait (conversion)
-    let dog3: Dog = (String::from("Rex"), 2).into();
-    println!("Converted dog: {}", dog3);
-
-    // Original animal shelter demo
-    let mut shelter = Shelter::new();
-    shelter.add_animal(Box::new(dog1));
-    shelter.add_animal(Box::new(cat));
-    shelter.describe_animals();
+    println!("Compare Traits with Python Methods..")
 }
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -170,7 +126,7 @@ mod tests {
         let dog2 = Dog::new(String::from("Buddy"), 3);
         let dog3 = Dog::new(String::from("Max"), 5);
         assert!(dog1 == dog2);
-        assert!(dog1 == dog3);
+        assert!(dog1 != dog3);
     }
 
     #[test]
