@@ -1,9 +1,14 @@
 #!/bin/python
+try:
+    from letta_agents_grpc import multi_service_pb2 as pb2
+    from letta_agents_grpc import multi_service_pb2_grpc as pb2_grpc
+    print("Successfully imported proto modules!")
+except ImportError:
+    import multi_service_pb2 as pb2
+    import multi_service_pb2_grpc as pb2_grpc
 
 import grpc
 from concurrent import futures
-import multi_service_pb2 as pb2
-import multi_service_pb2_grpc as pb2_grpc
 from person import Person
 from sqlmodel import select, create_engine, Session
 

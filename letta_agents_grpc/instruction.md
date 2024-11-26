@@ -179,9 +179,29 @@ client = create_client()
 
 # Using the groq_models, need to configure groq api keys
 # refer to the process here https://docs.letta.com/models/groq
-
+# to use groq models use below config
 tool_llm = LLMConfig(model="llama3-groq-8b-8192-tool-use-preview", model_endpoint_type='groq', model_endpoint='https://api.groq.com/openai/v1', model_wrapper=None, context_window=8192, put_inner_thoughts_in_kwargs=True)
 hf_embed = EmbeddingConfig(embedding_model="letta-free", embedding_endpoint_type="hugging-face", embedding_dim=1024, embedding_chunk_size=300, embedding_endpoint="https://embeddings.memgpt.ai")
+# to use openai models use below config
+from letta import LLMConfig, EmbeddingConfig
+
+# llm_config specification
+llm_config = LLMConfig(
+    model="gpt-4o-mini",
+    model_endpoint_type="openai",
+    model_endpoint="https://api.openai.com/v1",
+    context_window=128000
+)
+ 
+# embedding model specification
+embedding_config = EmbeddingConfig(
+    embedding_endpoint_type="openai",
+    embedding_endpoint="https://api.openai.com/v1",
+    embedding_model="text-embedding-ada-002",
+    embedding_dim=1536,
+    embedding_chunk_size=300
+)
+# rest are configs are common
 
 memory_blocks = ChatMemory(
     human="Call me Superman",
