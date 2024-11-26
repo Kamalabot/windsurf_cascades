@@ -187,6 +187,7 @@ client = create_client()
 # refer to the process here https://docs.letta.com/models/groq
 # to use groq models use below config
 tool_llm = LLMConfig(model="llama3-groq-8b-8192-tool-use-preview", model_endpoint_type='groq', model_endpoint='https://api.groq.com/openai/v1', model_wrapper=None, context_window=8192, put_inner_thoughts_in_kwargs=True)
+
 hf_embed = EmbeddingConfig(embedding_model="letta-free", embedding_endpoint_type="hugging-face", embedding_dim=1024, embedding_chunk_size=300, embedding_endpoint="https://embeddings.memgpt.ai")
 # to use openai models use below config
 from letta import LLMConfig, EmbeddingConfig
