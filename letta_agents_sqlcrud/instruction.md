@@ -4,6 +4,20 @@
 
 This project implements Letta Agents which has tools to interact with a local SQLite database and do CRUD operations. Letta is a Python framework that provides a declarative approach to building agents, enabling complex interactions between agents and systems.
 
+### Motivation
+
+AI has become the "lever" of 2024, and it can be seen as the "elephants" of 2024. Steering the AI is one of the major challenges we have to master in coming days.
+
+When the Agents can create other Agents with least effort, then we have a game changer. With help of instructions and examples provided in english, if we can build a custom agent, and write the system prompt to make the agent come alive and connect it to LLM in 2 to 3 hrs in the first time!!! Its really a game changer.
+
+The 2 to 3 hrs the 1st time will not just show the power of the Windsurf Cascades, but also show the variety of logical pitfalls that we will encounter when using different packages out in the open.
+
+I wanted to use Windsurf Cascades to experiment with Letta Agents and see if it could be used to build a custom agent that could interact with a local SQLite database.
+
+Well see for yourself. The CRUD operation performed on the SQL database through Natuaral language.
+
+![Agent CRUD in action](letta_agent_crud_01.gif)
+
 ### Key Components
 
 1. **Agent Communication**
