@@ -9,6 +9,7 @@ __pycache__/
 *.so
 *.mp4
 *.json
+*_gcurry*.gif
 # Distribution / packaging
 .Python
 build/

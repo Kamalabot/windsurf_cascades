@@ -46,33 +46,9 @@ pip install -r requirements.txt
 - macOS: `brew install gifsicle`
 - Windows: Download from http://www.lcdf.org/gifsicle/
 
-## Usage
+## Usage and Documentation
 
-Basic usage:
-```bash
-python converter.py input.mp4 output.gif
-```
-
-Advanced usage with maximum compression:
-```bash
-python converter.py input.mp4 output.gif --fps 10 --scale 0.8 --quality 85 --colors 64 --frame-skip 15 --lossy 100
-```
-
-## Arguments
-
-Required arguments:
-- `input_file`: Path to the input MP4 file
-- `output_file`: Path for the output GIF file
-
-Optional arguments:
-- `--fps`: Frames per second in output GIF (default: 10)
-- `--scale`: Scale factor for resizing (default: 1.0, e.g., 0.5 for half size)
-- `--quality`: Initial quality (1-100, default: 95)
-- `--colors`: Maximum number of colors (2-256, default: 64)
-- `--workers`: Number of worker processes (default: CPU count - 1)
-- `--frame-skip`: Frame skip threshold (0-100, default: 10.0)
-- `--dither/--no-dither`: Enable/disable dithering (default: enabled)
-- `--lossy`: Lossy compression level (20-200, default: 80)
+For detailed usage instructions, compression settings, and optimization strategies, please refer to the [README.md](README.md) file.
 
 ## Advanced Compression Techniques
 
@@ -96,48 +72,6 @@ The converter uses a three-stage optimization process:
    - Advanced frame optimization
    - Global color table optimization
    - Metadata optimization
-
-## Tips for Maximum Compression
-
-1. Frame Skipping (--frame-skip):
-   - Higher values skip more similar frames
-   - Start with 10-15 for good results
-   - Maximum 30-40 for aggressive compression
-
-2. Color Reduction (--colors):
-   - Use 32-64 colors for high compression
-   - Minimum 16 colors for maximum compression
-   - Enable dithering to maintain quality
-
-3. Scale Reduction (--scale):
-   - 0.5-0.8 for significant size reduction
-   - Consider target display size
-
-4. Lossy Compression (--lossy):
-   - 80-120 for good compression
-   - Up to 200 for maximum compression
-   - Higher values may affect quality
-
-5. Frame Rate (--fps):
-   - 8-10 fps for most content
-   - 5-8 fps for maximum compression
-
-## Example Commands
-
-1. Balanced compression:
-```bash
-python converter.py input.mp4 output.gif --fps 10 --scale 0.8 --quality 90 --colors 64 --frame-skip 10 --lossy 80
-```
-
-2. High compression:
-```bash
-python converter.py input.mp4 output.gif --fps 8 --scale 0.6 --quality 85 --colors 32 --frame-skip 20 --lossy 120
-```
-
-3. Maximum compression:
-```bash
-python converter.py input.mp4 output.gif --fps 5 --scale 0.5 --quality 70 --colors 16 --frame-skip 30 --lossy 200 --no-dither
-```
 
 ## Progress Tracking
 

@@ -12,8 +12,8 @@ import multiprocessing as mp
 from multiprocessing import Pool
 import math
 import numpy as np
-from pygifsicle import optimize as gifsicle_optimize
 import shutil
+import subprocess
 
 def validate_input_file(input_path):
     """Validate the input video file."""
@@ -34,12 +34,42 @@ def validate_output_file(output_path):
 
 def calculate_frame_difference(frame1, frame2):
     """Calculate the difference between two frames."""
-    return np.mean(np.abs(np.array(frame1) - np.array(frame2)))
+    # Convert frames to numpy arrays
+    arr1 = np.array(frame1)
+    arr2 = np.array(frame2)
+    
+    # Convert to grayscale if RGB
+    if len(arr1.shape) == 3:
+        arr1 = np.mean(arr1, axis=2)
+    if len(arr2.shape) == 3:
+        arr2 = np.mean(arr2, axis=2)
+    
+    # Ensure both arrays are 2D
+    if len(arr1.shape) != 2:
+        arr1 = arr1.reshape(arr1.shape[:2])
+    if len(arr2.shape) != 2:
+        arr2 = arr2.reshape(arr2.shape[:2])
+    
+    # Calculate mean absolute difference
+    diff = np.mean(np.abs(arr1 - arr2))
+    return diff
 
 def should_keep_frame(frame, prev_frame, threshold):
     """Determine if a frame should be kept based on difference threshold."""
     if prev_frame is None:
         return True
+    
+    # Convert frames to PIL Images if they're numpy arrays
+    if isinstance(frame, np.ndarray):
+        frame = Image.fromarray((frame * 255).astype(np.uint8))
+    if isinstance(prev_frame, np.ndarray):
+        prev_frame = Image.fromarray((prev_frame * 255).astype(np.uint8))
+    
+    # Ensure both frames are in the same mode
+    if frame.mode != prev_frame.mode:
+        frame = frame.convert('RGB')
+        prev_frame = prev_frame.convert('RGB')
+    
     return calculate_frame_difference(frame, prev_frame) > threshold
 
 def apply_dithering(frame):
@@ -68,49 +98,74 @@ def apply_dithering(frame):
     return frame
 
 def optimize_frame(args):
-    """Optimize a single frame with given parameters."""
+    """Optimize a single frame."""
     frame, max_colors, dither = args
     try:
+        # Convert frame to PIL Image if it's a numpy array
+        if isinstance(frame, np.ndarray):
+            frame = Image.fromarray((frame * 255).astype(np.uint8))
+        
+        # Ensure frame is in RGB mode
+        if frame.mode != 'RGB':
+            frame = frame.convert('RGB')
+        
+        # Apply dithering if enabled
         if dither:
             frame = apply_dithering(frame)
         
-        # Convert to palette mode with limited colors
-        new_frame = frame.convert('P', palette=Image.ADAPTIVE, colors=max_colors)
-        return new_frame
+        # Quantize colors
+        frame = frame.quantize(colors=max_colors, method=2)  # method=2 is median cut
+        return frame
     except Exception as e:
+        click.echo(f"Frame optimization error: {str(e)}", err=True)
         return None
+
+def gifsicle_optimize(input_path, output_path, options):
+    """Optimize GIF using gifsicle command line tool."""
+    cmd = ['gifsicle'] + options + ['-i', input_path, '-o', output_path]
+    try:
+        subprocess.run(cmd, check=True, capture_output=True)
+        return True
+    except subprocess.CalledProcessError as e:
+        click.echo(f"Gifsicle optimization failed: {e.stderr.decode()}", err=True)
+        return False
 
 def optimize_gif(input_gif, output_gif, max_colors=256, num_workers=None, frame_skip_threshold=0, dither=True):
     """Optimize GIF file size using advanced techniques and multiprocessing."""
     try:
-        if num_workers is None:
-            num_workers = max(1, mp.cpu_count() - 1)
-
-        # Open the GIF file
+        frames = []
+        prev_frame = None
+        
+        # Open input GIF
         with Image.open(input_gif) as img:
-            # Get total frames for progress bar
-            n_frames = img.n_frames
-            frames = []
-            prev_frame = None
+            n_frames = getattr(img, 'n_frames', 1)
             
             # Extract and filter frames
-            click.echo("Extracting and filtering frames...")
+            click.echo(f"Extracting {n_frames} frames...")
             for i in tqdm(range(n_frames), desc="Extracting"):
                 img.seek(i)
-                current_frame = img.copy()
+                current_frame = img.copy().convert('RGB')
                 
                 # Only keep frames that are sufficiently different
                 if should_keep_frame(current_frame, prev_frame, frame_skip_threshold):
                     frames.append(current_frame)
                     prev_frame = current_frame
-
-            click.echo(f"Retained {len(frames)}/{n_frames} frames after filtering")
-
+            
+            click.echo(f"Retained {len(frames)} frames out of {n_frames}")
+            
+            if not frames:
+                click.echo("No frames retained after filtering!", err=True)
+                return False
+            
+            # Set up multiprocessing
+            if num_workers is None:
+                num_workers = max(1, os.cpu_count() - 1)
+            
             # Prepare arguments for multiprocessing
             args = [(frame, max_colors, dither) for frame in frames]
             
             # Process frames in parallel with progress bar
-            click.echo("Optimizing frames...")
+            click.echo(f"Optimizing {len(args)} frames...")
             optimized_frames = []
             with Pool(num_workers) as pool:
                 for result in tqdm(
@@ -122,7 +177,7 @@ def optimize_gif(input_gif, output_gif, max_colors=256, num_workers=None, frame_
                         optimized_frames.append(result)
                     else:
                         click.echo("Warning: Failed to optimize a frame", err=True)
-
+            
             if optimized_frames:
                 click.echo("Saving optimized GIF...")
                 # Calculate optimal duration based on original and retained frame count
@@ -139,26 +194,26 @@ def optimize_gif(input_gif, output_gif, max_colors=256, num_workers=None, frame_
                 )
                 return True
             
+            click.echo("No frames were successfully optimized!", err=True)
+            return False
+            
     except Exception as e:
         click.echo(f"Optimization error: {str(e)}", err=True)
-    return False
+        return False
 
 def create_gif_with_progress(video, output_path, fps, opt, fuzz):
     """Create GIF from video with progress bar."""
     total_frames = int(video.duration * fps)
     
-    with tqdm(total=total_frames, desc="Converting") as pbar:
-        def progress_callback(t):
-            pbar.update(1)
-        
+    click.echo(f"Converting video to GIF ({total_frames} frames)...")
+    with tqdm(total=1, desc="Converting") as pbar:
         video.write_gif(
             output_path,
             fps=fps,
             program='ffmpeg',
-            opt=opt,
-            fuzz=fuzz,
-            callback=progress_callback
+            opt=opt
         )
+        pbar.update(1)
 
 @click.command()
 @click.argument('input_file', type=click.Path(exists=True))
@@ -217,24 +272,23 @@ def convert_to_gif(input_file, output_file, fps, scale, quality, colors, workers
             
             # Apply final optimization with gifsicle
             click.echo("Applying final optimization...")
-            gifsicle_optimize(final_gif_path, 
-                            output_file,
-                            options=['--optimize=3', f'--lossy={lossy}'])
-            
-            # Calculate and display compression statistics
-            original_size = os.path.getsize(temp_gif_path) / (1024*1024)
-            intermediate_size = os.path.getsize(final_gif_path) / (1024*1024)
-            final_size = os.path.getsize(output_file) / (1024*1024)
-            
-            click.echo("\n✨ Conversion completed successfully!")
-            click.echo(f"Output file: {output_file}")
-            click.echo(f"Original size: {original_size:.2f} MB")
-            click.echo(f"After Pillow optimization: {intermediate_size:.2f} MB")
-            click.echo(f"Final size: {final_size:.2f} MB")
-            click.echo(f"Total compression ratio: {(1 - final_size/original_size)*100:.1f}%")
-        else:
-            click.echo("❌ Failed to optimize GIF", err=True)
-            sys.exit(1)
+            if gifsicle_optimize(final_gif_path, 
+                             output_file,
+                             ['--optimize=3', f'--lossy={lossy}']):
+                # Calculate and display compression statistics
+                original_size = os.path.getsize(temp_gif_path) / (1024*1024)
+                intermediate_size = os.path.getsize(final_gif_path) / (1024*1024)
+                final_size = os.path.getsize(output_file) / (1024*1024)
+                
+                click.echo("\n✨ Conversion completed successfully!")
+                click.echo(f"Output file: {output_file}")
+                click.echo(f"Original size: {original_size:.2f} MB")
+                click.echo(f"After Pillow optimization: {intermediate_size:.2f} MB")
+                click.echo(f"Final size: {final_size:.2f} MB")
+                click.echo(f"Total compression ratio: {(1 - final_size/original_size)*100:.1f}%")
+            else:
+                click.echo("❌ Failed to optimize GIF", err=True)
+                sys.exit(1)
 
         # Clean up temporary files
         for temp_file in [temp_gif_path, final_gif_path]:
