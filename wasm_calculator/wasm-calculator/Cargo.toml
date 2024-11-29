@@ -7,13 +7,10 @@ repository = "https://github.com/yourusername/wasm-calculator"
 license = "MIT"
 
 [lib]
-crate-type = ["cdylib", "rlib"]
-
-[features]
-default = ["console_error_panic_hook"]
+crate-type = ["cdylib"]
 
 [dependencies]
-wasm-bindgen = "0.2.84"
+wasm-bindgen = "0.2"
 js-sys = "0.3.61"
 web-sys = { version = "0.3.61", features = [
     "console",
@@ -26,6 +23,9 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 console_error_panic_hook = { version = "0.1.7", optional = true }
 wasm-bindgen-test = "0.3.34"
+
+[features]
+default = ["console_error_panic_hook"]
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.34"
