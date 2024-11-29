@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WebAssembly Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 320px;
+        }
+        
+        .display {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: right;
+            font-size: 24px;
+            min-height: 40px;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #e9ecef;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #dee2e6;
+        }
+        
+        .operator {
+            background-color: #fd7e14;
+            color: white;
+        }
+        
+        .operator:hover {
+            background-color: #e76b00;
+        }
+        
+        .equals {
+            background-color: #28a745;
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .equals:hover {
+            background-color: #218838;
+        }
+        
+        .memory {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .memory:hover {
+            background-color: #0056b3;
+        }
+        
+        .clear {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .clear:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="memory" onclick="memoryStore()">MS</button>
+            <button class="memory" onclick="memoryRecall()">MR</button>
+            <button class="memory" onclick="memoryAdd()">M+</button>
+            <button class="memory" onclick="memoryClear()">MC</button>
+            
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="toggleSign()">±</button>
+            <button onclick="appendNumber('.')">.</button>
+            <button class="operator" onclick="setOperation('/')">/</button>
+            
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button class="operator" onclick="setOperation('*')">×</button>
+            
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button class="operator" onclick="setOperation('-')">-</button>
+            
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button class="operator" onclick="setOperation('+')">+</button>
+            
+            <button onclick="appendNumber('0')">0</button>
+            <button class="equals" onclick="calculate()">=</button>
+            <button class="operator" onclick="calculatePercent()">%</button>
+        </div>
+    </div>
+</body>
+</html>
