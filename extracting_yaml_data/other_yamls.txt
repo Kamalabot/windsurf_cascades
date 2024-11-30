@@ -1,0 +1,1 @@
+https://raw.githubusercontent.com/crewAIInc/crewAI-examples/refs/heads/main/game-builder-crew/src/game_builder_crew/config/gamedesign.yaml

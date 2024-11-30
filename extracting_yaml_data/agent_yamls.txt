@@ -1,0 +1,6 @@
+https://raw.githubusercontent.com/crewAIInc/crewAI-examples/refs/heads/main/marketing_strategy/src/marketing_posts/config/agents.yaml
+https://raw.githubusercontent.com/crewAIInc/crewAI-examples/refs/heads/main/surprise_trip/src/surprise_trip/config/agents.yaml
+https://raw.githubusercontent.com/crewAIInc/crewAI-examples/refs/heads/main/match_profile_to_positions/src/match_profile_to_positions/config/agents.yaml
+https://raw.githubusercontent.com/crewAIInc/crewAI-examples/refs/heads/main/job_posting/src/job-posting/config/agents.yaml
+https://raw.githubusercontent.com/crewAIInc/crewAI-examples/refs/heads/main/game_builder_crew/src/game-builder-crew/config/agents.yaml
+https://raw.githubusercontent.com/crewAIInc/crewAI-examples/refs/heads/main/recruitment/src/recruitment/config/agents.yaml

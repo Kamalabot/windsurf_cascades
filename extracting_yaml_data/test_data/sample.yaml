@@ -1,0 +1,33 @@
+marketing_strategy:
+  tasks:
+    - name: research_task
+      description: "Research market trends and competitors"
+      priority: high
+      tools: ["web_search", "data_analysis"]
+    - name: content_creation
+      description: "Create marketing content"
+      priority: medium
+      tools: ["content_editor", "image_generator"]
+
+  agents:
+    - name: researcher
+      role: "Market Researcher"
+      description: "Analyzes market trends"
+      tools: ["web_search", "data_analysis"]
+    - name: content_creator
+      role: "Content Manager"
+      description: "Creates marketing materials"
+      tools: ["content_editor"]
+
+surprise_trip:
+  tasks:
+    - name: destination_search
+      description: "Find suitable destinations"
+      priority: high
+      tools: ["location_search", "weather_check"]
+  
+  agents:
+    - name: travel_planner
+      role: "Trip Planner"
+      description: "Plans travel itineraries"
+      tools: ["location_search"]
