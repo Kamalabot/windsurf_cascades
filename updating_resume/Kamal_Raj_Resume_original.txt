@@ -1,0 +1,114 @@
+Address                                KAMAL RAJ M M                                   Contact
+
+Senior Python Developer | Artificial Intelligence SME | AI Research | Data Analytics
+OVERVIEW:
+Innovative and detail oriented Senior Python Consultant eager to implement the in-depth
+knowledge in Data Analysis with Python, NLP libraries like Pytorch, Transformers, LLM
+Frameworks like Langchain, DSPy along with Cloud Deployments in AWS & GCP.
+
+WHY HIRE ME:
+With a proven track record in AI, Python and Linux, I'm equipped to deliver cutting-edge
+solutions that will drive your business forward. My expertise in core Python modules, NLP,
+and Gen AI framework, combined with my deep understanding of AI technologies and Linux
+systems, will position me as a valuable asset to your team.
+
+SKILLS:
+   1) Programming Language: Python
+   2) Frameworks & Tools: Pytorch, Transformers, Langchain, Django & Streamlit
+   3) Data Analysis: data cleaning & statistical analysis with Pandas, NumPy, SKlearn
+   4) Relational DBs : Postgres & SQLite3
+   5) VCS : Git
+   6) Generative AI Technologies: Open Source & Paid LLMs(Llama3, OpenAI, Gemini, AWS
+      Sagemaker)
+   7) AI-Techniques: Fine-Tuning and Instruction tuning with Custom Data using Pytorch,
+      Transformers, TRL
+   8) Data Processing: Experience with data processing libraries like Pandas, NumPy
+   9) Administration on Linux: Phoenix AI Observability Server & Matrix Comm Server .
+   10) Vector Embedding & storing: Model Loading & deployment
+   11) Cloud Platforms: AWS EC2, Hugging Face Spaces, Streamlit
+   12) Operating System: Ubuntu Linux, Windows
+   13) Technical Writing: Familiar with Asciidoctor and markdown format
+
+RESPONSIBILITIES:
+   1) Translate the business questions into a structured automation process starting with
+      data collection, cleaning, conducting EDA and statistical analysis.
+   2) Implementing data pipelines with python & create dashboards for stakeholders
+   3) Providing actionable, detail oriented consultation for real world problems with
+      Generative AI platforms like OpenAI, HuggingFace, Groq and AWS Sage maker.
+   4) Developing AI based solutions that target the Business problems, automation
+      challenges and help in reducing cost, increase efficiency.
+   5) Write RAG pipelines from scratch in Python, that involve LLM framework like
+      Langchain, vector store like faiss, weaviate and GenAI models API endpoints.
+   6) Develop Django Backend with RestAPI endpoints, by integrating with OpenAI, Groq
+      and HuggingFace LLM API endpoints.
+   7) Research open source Bridges and Python SDKs to integration Gen AI model in to
+      Matrix server, and create services
+   8) Research on Open Telemetry and Open Inference for Gen AI API endpoint, and
+      administer Phoenix Server on Ubuntu 20.04 machines
+   9) Write technical write up explaining the problem at hand, and possible technical
+      solutions, and the steps to achieve the results
+
+
+PROJECTS WITH AI & PYTHON WITH LINUX:
+   1) GenAI Youtube Comment Automation Development: Aug 2022 - Mar 2023
+      Overview: Develop Django Backend that integrates with Youtube API, Open AI
+      API that extracts the recent comment made under the Youtube Videos, and
+      provide the reply from the AI backed by the LLM.
+      Tech: Langchain, Django, OpenAI SDK, Ngrok
+      Outcome: Provided 3 comment recommendations for every Comment received in the
+      youtube video, and increased the comment reply rate to 200 comments per hour.
+
+   2) Generative AI Ecosystem & Python Integration Training: Sep'23 ~ Present
+      Overview: Trained three experienced python developers to transition into the field of
+      Generative AI,
+      Tech: Langchain, Pytorch, Transformers, HuggingFace, VectorDBs & Core Python
+      Outcome: Successfully transition the 3 developers into GenAI work profiles in their
+      current organization.
+
+   3) Upgrading and Testing the Gen AI ChatBot with RAG Pipeline: Sep2023~Nov2023
+      Overview: Upgrade the CRUD Endpoints of the Django backend integrated with
+      OpenAI with help of Langchain
+      Tech: Langchain, Django, OpenAI SDK
+      Outcome: Rewrote the CRUD endpoints that provides the reply to the end users, and
+      successfully got it approved by the customer stakeholders
+
+   4) Integration DSPy & Phoenix Server on Ubuntu 20.04 for AI Observability:
+      July2024~Aug2024
+      Overview: Develop F1 metric score on DSPy framework & integrate Phoenix Server
+      for tracing the OpenAI API calls. Reduced the debugging time of DSPy modules.
+      Optimized the cost of API calls to OpenAI with the help of Phoenix Server
+      Tech: Ubuntu, Dspy, OpenAI SDK, Phoenix Server
+      Outcome: Developed the logic for F1 metric in DSPy framework. Researched the
+      Phoenix and administered phoenix server with backend Postgres Database.
+
+EXPERIENCE:
+
+Senior Python Developer | AI Engineer | Self-employed | 2022 - Present | 2+ yrs
+   1) Innovative and detail oriented Generative AI Engineer eager to implement the
+       in-depth knowledge in Large Language Models, NLP libraries like Pytorch,
+       Transformers, LLM Frameworks like Langchain, DSPy along with Cloud Deployments
+       in AWS & Google.
+   2) Experienced in providing Top class detail oriented consultation for real world
+       problems with Generative AI platforms like OpenAI, HuggingFace, Groq and AWS
+       Sagemaker.
+   3) Skilled at developing AI based solutions that solves the Business problems,
+      automation challenges and help in reducing cost, increase efficiency.
+   4) Collaborate with a dynamic team of experts and contribute to the project’s
+      overarching goal of building AI systems that people can trust
+   5) Optimize and scale the AI models by profiling the performance and efficiency, and
+      educating the internal teams.
+
+
+EARLIER INDUSTRY EXPERIENCE: 14+ YRS
+   1) Org1 · Full-time | Manager | Mar 2014 - Nov 2022 | 8 yrs 9 mos
+   2) Sales Executive | Org2 | 2010 - 2014 | 4 yrs
+   3) Org3 - India | Thermal Engineer| 2008 - 2010 | 2 yrs
+
+
+EDUCATION:
+   1) Completed BE Mechanical engineering from College affiliated with Anna University in
+      2007.
+   2) Achieved consistent department topper and graduated with 87%.
+   3) Scored 90.5% in class XII at Hr. Sec Matriculation School in 2003.
+   4) Scored 77.2% in class X at Matriculation School in 2001.
+

@@ -1,0 +1,121 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{graphicx}
+\usepackage{tabularx}
+
+% Define custom colors
+\definecolor{darkgray}{gray}{0.2}
+\definecolor{lightgray}{gray}{0.6}
+
+% Custom section formatting
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[1]{\item #1}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+% Adjust page margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\begin{document}
+
+\begin{center}
+    {\Huge \scshape Kamal Raj M M} \\ \vspace{5pt}
+    \textit{Senior Python Developer | Artificial Intelligence SME | AI Research | Data Analytics} \\ \vspace{3pt}
+    \small
+    Contact Information Available Upon Request
+\end{center}
+
+\section{Overview}
+\begin{itemize}[leftmargin=*]
+    \resumeItem{Innovative and detail oriented Senior Python Consultant eager to implement the in-depth knowledge in Data Analysis with Python, NLP libraries like Pytorch, Transformers, LLM Frameworks like Langchain, DSPy along with Cloud Deployments in AWS \& GCP.}
+\end{itemize}
+
+\section{Skills}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Programming Language:} Python
+    \item \textbf{Frameworks \& Tools:} Pytorch, Transformers, Langchain, CrewAI, Django \& Streamlit
+    \item \textbf{Data Analysis:} Data cleaning \& statistical analysis with Pandas, NumPy, SKlearn
+    \item \textbf{Databases:} Postgres \& SQLite3
+    \item \textbf{Version Control:} Git
+    \item \textbf{Generative AI:} Open Source \& Paid LLMs (Llama3, OpenAI, Gemini, AWS Sagemaker)
+    \item \textbf{AI-Techniques:} Fine-Tuning and Instruction tuning with Custom Data using Pytorch, Transformers, TRL
+    \item \textbf{Cloud Platforms:} AWS EC2, Hugging Face Spaces, Streamlit
+    \item \textbf{Operating System:} Ubuntu Linux, Windows
+    \item \textbf{Technical Writing:} Asciidoctor and markdown format
+\end{itemize}
+
+\section{Experience}
+\begin{itemize}[leftmargin=*]
+    \resumeSubheading
+      {Senior Python Developer | AI Engineer}{2022 - Present}
+      {Self-employed}{2+ yrs}
+      \begin{itemize}[leftmargin=*]
+        \resumeItem{Developed sophisticated AI agents using the CrewAI framework, implementing advanced autonomous systems for task automation and decision-making}
+        \resumeItem{Architected and implemented multi-agent systems demonstrating autonomous collaboration and task delegation}
+        \resumeItem{Provided actionable, detail-oriented consultation for real-world problems with Generative AI platforms}
+        \resumeItem{Developed AI-based solutions targeting business problems and automation challenges}
+        \resumeItem{Implemented RAG pipelines using Langchain, vector stores, and GenAI model API endpoints}
+      \end{itemize}
+
+\section{Key Projects}
+    \resumeSubheading
+      {GenAI Youtube Comment Automation}{Aug 2022 - Mar 2023}
+      {Lead Developer}{Remote}
+      \begin{itemize}[leftmargin=*]
+        \resumeItem{Developed Django Backend integrating Youtube API and OpenAI API for automated comment responses}
+        \resumeItem{Increased comment reply rate to 200 comments per hour using AI-powered responses}
+        \resumeItem{Tech Stack: Langchain, Django, OpenAI SDK, Ngrok}
+      \end{itemize}
+      
+    \resumeSubheading
+      {AI Agent Development with CrewAI}{Jan 2024 - Present}
+      {Lead AI Engineer}{Remote}
+      \begin{itemize}[leftmargin=*]
+        \resumeItem{Designed and implemented autonomous AI agents using CrewAI framework}
+        \resumeItem{Created multi-agent systems capable of complex task execution and collaboration}
+        \resumeItem{Integrated various AI models and APIs to enhance agent capabilities}
+        \resumeItem{Implemented robust error handling and monitoring systems}
+      \end{itemize}
+
+    \resumeSubheading
+      {DSPy \& Phoenix Server Integration}{July 2024 - Aug 2024}
+      {AI Engineer}{Remote}
+      \begin{itemize}[leftmargin=*]
+        \resumeItem{Developed F1 metric score on DSPy framework \& integrated Phoenix Server for API call tracing}
+        \resumeItem{Optimized OpenAI API costs and reduced debugging time}
+        \resumeItem{Tech Stack: Ubuntu, DSPy, OpenAI SDK, Phoenix Server}
+      \end{itemize}
+\end{itemize}
+
+\section{Responsibilities}
+\begin{itemize}[leftmargin=*]
+    \resumeItem{Translate business questions into structured automation processes}
+    \resumeItem{Implement data pipelines and create stakeholder dashboards}
+    \resumeItem{Develop Django Backend with RestAPI endpoints integrating various LLM APIs}
+    \resumeItem{Research and integrate Gen AI models into Matrix server}
+    \resumeItem{Implement Open Telemetry and Open Inference for Gen AI API endpoints}
+    \resumeItem{Write technical documentation and solution proposals}
+\end{itemize}
+
+\end{document}
