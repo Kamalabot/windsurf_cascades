@@ -1,6 +1,11 @@
 # E-Commerce Product Performance Dashboard
 
-## Product Performance Overview
+## Rendering Note
+> **Important**: This dashboard supports multiple rendering methods:
+> - Interactive Chart.js (local/supported environments)
+> - Static QuickChart images (GitHub/universal compatibility)
+
+## Product Performance Overview (Interactive Chart.js)
 
 <div style="width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between;">
     <div style="width: 48%;">
@@ -118,6 +123,20 @@ new Chart(document.getElementById('priceChart'), {
 });
 </script>
 
+## Product Performance Overview (Static Images)
+
+### Sales Performance
+![Sales Chart](https://quickchart.io/chart?c={type:'bar',data:{labels:['Wireless Headphones','Smart Watch','Bluetooth Speaker','Fitness Tracker','Noise Cancelling Earbuds'],datasets:[{label:'Total Sales',data:[1250,950,1500,800,650]}]}})
+
+### Product Ratings
+![Reviews Chart](https://quickchart.io/chart?c={type:'radar',data:{labels:['Wireless Headphones','Smart Watch','Bluetooth Speaker','Fitness Tracker','Noise Cancelling Earbuds'],datasets:[{label:'Customer Reviews',data:[4.5,4.7,4.3,4.6,4.8]}]}})
+
+### Inventory Quantity
+![Quantity Chart](https://quickchart.io/chart?c={type:'pie',data:{labels:['Wireless Headphones','Smart Watch','Bluetooth Speaker','Fitness Tracker','Noise Cancelling Earbuds'],datasets:[{data:[500,300,750,400,250]}]}})
+
+### Product Pricing
+![Price Chart](https://quickchart.io/chart?c={type:'line',data:{labels:['Wireless Headphones','Smart Watch','Bluetooth Speaker','Fitness Tracker','Noise Cancelling Earbuds'],datasets:[{label:'Product Prices',data:[129.99,199.99,79.99,89.99,159.99]}]}})
+
 ## Product Details
 
 | Product Name | Price | Total Sales | Inventory | Average Review |
@@ -141,3 +160,21 @@ new Chart(document.getElementById('priceChart'), {
 - **Average Product Rating**: 4.58/5
 - **Total Units Sold**: 4,150
 - **Total Inventory**: 2,200 units
+
+## Rendering Methods
+
+### 1. Interactive Dashboard
+- Requires local environment with Chart.js support
+- Full interactivity and dynamic rendering
+- Best for detailed exploration
+
+### 2. Static Image Charts
+- Universal compatibility
+- Renders on GitHub and static markdown viewers
+- Quick visual overview
+
+## Technical Notes
+
+- Interactive charts powered by Chart.js
+- Static images generated via QuickChart.io
+- Consistent data representation across methods
