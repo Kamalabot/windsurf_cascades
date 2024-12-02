@@ -126,16 +126,16 @@ new Chart(document.getElementById('priceChart'), {
 ## Product Performance Overview (Static Images)
 
 ### Sales Performance
-![Sales Chart](https://quickchart.io/chart?c={type:'bar',data:{labels:['Wireless Headphones','Smart Watch','Bluetooth Speaker','Fitness Tracker','Noise Cancelling Earbuds'],datasets:[{label:'Total Sales',data:[1250,950,1500,800,650]}]}})
+![Sales Chart](https://quickchart.io/chart?c=%7Btype%3A%27bar%27%2Cdata%3A%7Blabels%3A%5B%27Wireless%20Headphones%27%2C%27Smart%20Watch%27%2C%27Bluetooth%20Speaker%27%2C%27Fitness%20Tracker%27%2C%27Noise%20Cancelling%20Earbuds%27%5D%2Cdatasets%3A%5B%7Blabel%3A%27Total%20Sales%27%2Cdata%3A%5B1250%2C950%2C1500%2C800%2C650%5D%7D%5D%7D%7D)
 
 ### Product Ratings
-![Reviews Chart](https://quickchart.io/chart?c={type:'radar',data:{labels:['Wireless Headphones','Smart Watch','Bluetooth Speaker','Fitness Tracker','Noise Cancelling Earbuds'],datasets:[{label:'Customer Reviews',data:[4.5,4.7,4.3,4.6,4.8]}]}})
+![Reviews Chart](https://quickchart.io/chart?c=%7Btype%3A%27radar%27%2Cdata%3A%7Blabels%3A%5B%27Wireless%20Headphones%27%2C%27Smart%20Watch%27%2C%27Bluetooth%20Speaker%27%2C%27Fitness%20Tracker%27%2C%27Noise%20Cancelling%20Earbuds%27%5D%2Cdatasets%3A%5B%7Blabel%3A%27Customer%20Reviews%27%2Cdata%3A%5B4.5%2C4.7%2C4.3%2C4.6%2C4.8%5D%7D%5D%7D%7D)
 
 ### Inventory Quantity
-![Quantity Chart](https://quickchart.io/chart?c={type:'pie',data:{labels:['Wireless Headphones','Smart Watch','Bluetooth Speaker','Fitness Tracker','Noise Cancelling Earbuds'],datasets:[{data:[500,300,750,400,250]}]}})
+![Quantity Chart](https://quickchart.io/chart?c=%7Btype%3A%27pie%27%2Cdata%3A%7Blabels%3A%5B%27Wireless%20Headphones%27%2C%27Smart%20Watch%27%2C%27Bluetooth%20Speaker%27%2C%27Fitness%20Tracker%27%2C%27Noise%20Cancelling%20Earbuds%27%5D%2Cdatasets%3A%5B%7Bdata%3A%5B500%2C300%2C750%2C400%2C250%5D%7D%5D%7D%7D)
 
 ### Product Pricing
-![Price Chart](https://quickchart.io/chart?c={type:'line',data:{labels:['Wireless Headphones','Smart Watch','Bluetooth Speaker','Fitness Tracker','Noise Cancelling Earbuds'],datasets:[{label:'Product Prices',data:[129.99,199.99,79.99,89.99,159.99]}]}})
+![Price Chart](https://quickchart.io/chart?c=%7Btype%3A%27line%27%2Cdata%3A%7Blabels%3A%5B%27Wireless%20Headphones%27%2C%27Smart%20Watch%27%2C%27Bluetooth%20Speaker%27%2C%27Fitness%20Tracker%27%2C%27Noise%20Cancelling%20Earbuds%27%5D%2Cdatasets%3A%5B%7Blabel%3A%27Product%20Prices%27%2Cdata%3A%5B129.99%2C199.99%2C79.99%2C89.99%2C159.99%5D%7D%5D%7D%7D)
 
 ## Product Details
 
