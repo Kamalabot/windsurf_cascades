@@ -1,0 +1,22 @@
+Chapter:
+0:00 Intro
+1:12 AI IDE Landscape
+3:50 Augumented Full Agentic IDEs
+7:20 Humans Give The Objective
+8:30 Business Areas Impacted By Agentic IDEs
+11:00 Power of Open Source Tech
+12:20 Objective of Business is Increase Bottom Line
+14:10 10 Introductory Business Use Cases Explained
+15:30 Agents Will be the New Middle-Ware
+16:35 API Integration to Data Migration
+20:42 Work Flow & Analytics Automation
+21:20 How to Use Cascade
+22:40 Use Obsidian to Document Processes
+23:35 Diving into Another 40 Extended Application
+26:00 IDE is Competitor to Browser
+27:00 Continuing Extended Applications
+28:12 Browser Based Web Apps will be on IDEs
+29:00 Solving Problems by Requesting Windsurf
+30:40 Recap
+31:30 Outro & Next Video
+
