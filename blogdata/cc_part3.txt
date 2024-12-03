@@ -1,0 +1,23 @@
+Chapter:
+0:00 Intro & Contents
+1:10 Specification Apps Build with Windsurf
+2:15 WASM-Rust Based Calculator
+3:15 Inspecting WASM file in Browser
+5:30 Personal Website with HTML JS and CSS
+6:40 Comparing Rust & Python OOP implementing
+8:50 PDF Resume Update to update project
+10:30 Makes The Machine Work With Linux
+12:00 TEX format of PDF Resume
+12:50 IDE will be future Browsers
+13:40 GUI TKinter Python Calculator
+16:20 YAML Application & Data Extraction
+19:30 Specification of Excel to DB Migration
+20:40 Seeing the Excel Data Sample
+21:50 Asking Cascade to Write Python Script
+24:10 Correcting Python Script Column Names with Windsurf
+26:00 Importance of Learning Programming
+28:10 Running the corrected Pyhton Script Successfully
+29:25 Committing code to Github Repo
+30:50 No Need to Wait for Developers
+32:00 Recap
+32:40 Outro
