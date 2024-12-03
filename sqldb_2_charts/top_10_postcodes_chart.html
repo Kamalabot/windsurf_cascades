@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="postcodeSalesChart"></canvas>
+
+    <script>
+        const ctx = document.getElementById('postcodeSalesChart');
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2049', '2032', '2193', '2048', '2164', '2031', '2166', '2128', '2125', '2150'],
+                datasets: [{
+                    label: 'Total Sales ($)',
+                    data: [274345.80, 269275.09, 242065.04, 236497.98, 234119.33, 229417.51, 225959.50, 216232.35, 213338.83, 213236.54],
+                    backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Top 10 Postcodes by Total Sales',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Total Sales ($)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Postcode'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
