@@ -1,0 +1,25 @@
+Chapter:
+0:00 Full Stack with Agentic IDE
+0:40 Everything is formatting Text
+2:20 Showing Output of the Output Markdown
+4:40 Showing the JSON updated in MD
+5:10 Pros of HTML in Mark Down
+6:50 Sending Post Request from IDE
+7:25 Instruction Log used for above Output
+8:00 Agents will be Middle Ware.
+8:40 Reviewing Raw Markdown format
+9:50 What is API? Fundamental Purpose
+12:05 Block diagram of the process
+12:40 What is Usual API Workflow
+14:40 Changing the Workflow
+15:00 Demo Walkthrough steps
+15:50 Sending First Request through Cascade
+17:10 Cascade Creates Diff when updating files
+18:50 Editing and resending request
+20:10 Sending Get Request from IDE
+21:30 Sending Post Request from IDE
+24:20 Creating Post Request from english sentence
+26:00 Practicing with Instruction provided
+26:50 Agents will be the Interface of future
+27:40 Rethink your future goals / hobbies / carrier path
+28:00 Outro
