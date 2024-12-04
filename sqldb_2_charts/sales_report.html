@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales Analysis Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .chart-container {
+            width: 800px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sales Database Analysis Report</h1>
+
+    <h2>Sales Analysis by Postcode</h2>
+    <table>
+        <tr>
+            <th>Postcode</th>
+            <th>Total Sales</th>
+            <th>Avg Sale Value</th>
+            <th>Number of Sales</th>
+        </tr>
+        <tr>
+            <td>2049</td>
+            <td>274,345.80</td>
+            <td>91,448.60</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>2032</td>
+            <td>269,275.09</td>
+            <td>89,758.36</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>2193</td>
+            <td>242,065.04</td>
+            <td>80,688.35</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>2048</td>
+            <td>236,497.98</td>
+            <td>78,832.66</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>2164</td>
+            <td>234,119.33</td>
+            <td>78,039.78</td>
+            <td>3</td>
+        </tr>
+    </table>
+
+    <div class="chart-container">
+        <canvas id="salesByPostcodeChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('salesByPostcodeChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2049', '2032', '2193', '2048', '2164'],
+                datasets: [{
+                    label: 'Total Sales ($)',
+                    data: [274345.8, 269275.09, 242065.04, 236497.98, 234119.33],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)',
+                        'rgba(255, 99, 132, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Top 5 Postcodes by Total Sales',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Total Sales ($)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Postcode'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
