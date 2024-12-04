@@ -12,6 +12,49 @@ Base URL: `https://jsonplaceholder.typicode.com`
 
 The API is maintained by [Typicode](https://typicode.com) and is widely used by developers worldwide for testing and educational purposes. All data is mock data and will not be permanently modified when using POST, PUT, or DELETE requests.
 
+## Tools & Technologies Used
+
+### Python Requests Library
+```python
+import requests
+response = requests.get('https://api.example.com/endpoint')
+```
+The [Requests](https://requests.readthedocs.io/) library is used for making HTTP requests in Python. It simplifies the process of sending HTTP/1.1 requests and handling responses.
+
+### Markdown with HTML/CSS
+This documentation uses enhanced Markdown with inline HTML and CSS for better visualization:
+```markdown
+# Basic Markdown
+- List items
+- **Bold text**
+
+<!-- Enhanced with HTML/CSS -->
+<div style="background: #f0f0f0; padding: 10px;">
+  Styled content
+</div>
+```
+Learn more about:
+- [Basic Markdown Syntax](https://www.markdownguide.org/basic-syntax/)
+- [GitHub Flavored Markdown](https://github.github.com/gfm/)
+- [HTML in Markdown](https://www.markdownguide.org/hacks/)
+
+### cURL for API Testing
+```bash
+curl -X GET "https://jsonplaceholder.typicode.com/posts"
+```
+[cURL](https://curl.se/docs/) is a command-line tool for transferring data using various protocols. It's excellent for testing APIs and viewing raw responses.
+
+### Shell Scripting
+Used for automating API requests and file updates:
+```bash
+#!/bin/bash
+# Example of API request automation
+curl -s "https://api.example.com" | jq '.'
+```
+Learn more about:
+- [Shell Scripting Guide](https://www.shellscript.sh/)
+- [jq Documentation](https://stedolan.github.io/jq/) for JSON processing
+
 ## JSONPlaceholder API Integration Results
 
 This file contains the results of various API requests to JSONPlaceholder.
