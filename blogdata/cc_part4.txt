@@ -1,0 +1,17 @@
+chapter:
+0:00 Intro
+0:30 Pre-requisites
+1:35 Block Diagram of the process
+2:00 Activities executed
+2:45 Example Markdown Report
+4:45 No Need for Front End or Browser
+5:55 Instructions used for Example Report
+7:10 Do Simple Things First
+8:30 Executing 1st Instruction to Cascade for Report
+11:55 Flow Diagram of Cascade at Work & Recap
+13:40 Instructing Cascade to provide the Visual Chart for 3rd Query
+15:30 Asking Cascade How to Render the Markdown File
+17:30 Cascade directs to use grip package
+18:15 Recap & Benefits discussion
+19:30 Outro
+
