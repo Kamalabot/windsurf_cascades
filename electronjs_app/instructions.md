@@ -100,6 +100,65 @@ electronjs_app/
 - Verify that the package.json has the correct configuration
 - Make sure you have Node.js and npm installed on your system
 
+## Network Troubleshooting
+
+### Resolving NPM Installation Issues
+If you encounter the error `getaddrinfo EAI_AGAIN github.com` or similar DNS-related issues, follow these steps in order:
+
+1. **Clear NPM Cache**
+```bash
+npm cache clean --force
+```
+
+2. **Update DNS Configuration**
+```bash
+# Add Google DNS servers
+echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4" | sudo tee /etc/resolv.conf
+```
+
+3. **Configure NPM Registry**
+```bash
+# Set primary registry
+npm set registry https://registry.npmjs.org/
+
+# If still failing, try alternative registry
+npm install --save-dev electron --registry=https://registry.npmmirror.com
+```
+
+4. **Verify Connectivity**
+```bash
+# Test connection to GitHub
+ping github.com
+```
+
+### Additional Network Solutions
+- Check your internet connection
+- Temporarily disable firewall
+- Try using a VPN service
+- If on corporate network, contact IT support
+- Consider using offline installation methods
+
+## Current Project Status
+
+### Completed 
+- Basic project structure created
+  - main.js (Electron main process)
+  - index.html (Calculator UI)
+  - styles.css (Styling)
+  - renderer.js (Calculator logic)
+- Package.json initialization
+
+### Pending 
+- Electron installation (blocked by DNS issues)
+- Application first run
+- Feature testing
+
+### Next Steps
+1. Complete dependency installation
+2. Verify all files are properly loaded
+3. Test calculator functionality
+4. Document any additional issues
+
 ## Future Enhancements
 - Add more geometric shapes and calculations
 - Implement memory functions

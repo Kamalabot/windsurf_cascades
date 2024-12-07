@@ -2,17 +2,24 @@ let display = document.getElementById('display');
 let currentInput = '';
 let currentOperation = null;
 let previousInput = '';
+let shouldStartNewNumber = false;  // New flag to indicate when to start a new number
 
 function appendNumber(num) {
-    currentInput += num;
+    if (shouldStartNewNumber) {
+        currentInput = num;
+        shouldStartNewNumber = false;
+    } else {
+        currentInput += num;
+    }
     updateDisplay();
 }
 
 function appendOperator(operator) {
     if (currentInput !== '') {
         previousInput = currentInput;
-        currentInput = '';
+        currentInput = previousInput;
         currentOperation = operator;
+        shouldStartNewNumber = true;  // Set flag to true when operator is pressed
         updateDisplay();
     }
 }
@@ -21,6 +28,7 @@ function clearDisplay() {
     currentInput = '';
     previousInput = '';
     currentOperation = null;
+    shouldStartNewNumber = false;
     updateDisplay();
 }
 
@@ -52,6 +60,7 @@ function calculate(operation) {
         currentInput = result.toString();
         previousInput = '';
         currentOperation = null;
+        shouldStartNewNumber = false;
         updateDisplay();
     } else {
         // Scientific calculations
