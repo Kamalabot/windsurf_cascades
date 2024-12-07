@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f0f0;
+}
+
+.calculator {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+}
+
+.display {
+    margin-bottom: 20px;
+}
+
+#display {
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    text-align: right;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f8f9fa;
+}
+
+.buttons {
+    display: grid;
+    gap: 10px;
+}
+
+.scientific-section,
+.geometric-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.numpad-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background: #e9ecef;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #dee2e6;
+}
+
+.equals {
+    background: #007bff;
+    color: white;
+}
+
+.equals:hover {
+    background: #0056b3;
+}
+
+.scientific-section button {
+    background: #6c757d;
+    color: white;
+}
+
+.scientific-section button:hover {
+    background: #5a6268;
+}
+
+.geometric-section button {
+    background: #28a745;
+    color: white;
+}
+
+.geometric-section button:hover {
+    background: #218838;
+}

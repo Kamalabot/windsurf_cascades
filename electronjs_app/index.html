@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scientific & Geometric Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="display" readonly>
+        </div>
+        
+        <div class="buttons">
+            <!-- Scientific Functions -->
+            <div class="scientific-section">
+                <button onclick="calculate('sin')">sin</button>
+                <button onclick="calculate('cos')">cos</button>
+                <button onclick="calculate('tan')">tan</button>
+                <button onclick="calculate('log')">log</button>
+                <button onclick="calculate('ln')">ln</button>
+                <button onclick="calculate('sqrt')">√</button>
+                <button onclick="calculate('power')">^</button>
+                <button onclick="calculate('pi')">π</button>
+            </div>
+
+            <!-- Geometric Functions -->
+            <div class="geometric-section">
+                <button onclick="geometric('circle')">Circle</button>
+                <button onclick="geometric('square')">Square</button>
+                <button onclick="geometric('triangle')">Triangle</button>
+                <button onclick="geometric('rectangle')">Rectangle</button>
+            </div>
+
+            <!-- Number Pad -->
+            <div class="numpad-section">
+                <button onclick="appendNumber('7')">7</button>
+                <button onclick="appendNumber('8')">8</button>
+                <button onclick="appendNumber('9')">9</button>
+                <button onclick="appendOperator('+')">+</button>
+                
+                <button onclick="appendNumber('4')">4</button>
+                <button onclick="appendNumber('5')">5</button>
+                <button onclick="appendNumber('6')">6</button>
+                <button onclick="appendOperator('-')">-</button>
+                
+                <button onclick="appendNumber('1')">1</button>
+                <button onclick="appendNumber('2')">2</button>
+                <button onclick="appendNumber('3')">3</button>
+                <button onclick="appendOperator('*')">×</button>
+                
+                <button onclick="appendNumber('0')">0</button>
+                <button onclick="appendNumber('.')">.</button>
+                <button onclick="clearDisplay()">C</button>
+                <button onclick="appendOperator('/')">/</button>
+                
+                <button onclick="calculate('equals')" class="equals">=</button>
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+</html>
