@@ -1,7 +1,8 @@
-const { app, BrowserWindow, Menu, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron');
 const path = require('path');
 const os = require('os');
-const { spawn } = require('child_process');
+const { spawn, exec } = require('child_process');
+const fs = require('fs');
 
 // Initialize shell
 const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
@@ -24,6 +25,24 @@ function createWindow() {
         {
             label: 'File',
             submenu: [
+                {
+                    label: 'Execute Code',
+                    submenu: [
+                        {
+                            label: 'Run Python Script',
+                            click: () => executeCodePrompt('python')
+                        },
+                        {
+                            label: 'Run JavaScript',
+                            click: () => executeCodePrompt('javascript')
+                        },
+                        {
+                            label: 'Run Shell Command',
+                            click: () => executeCodePrompt('shell')
+                        }
+                    ]
+                },
+                { type: 'separator' },
                 {
                     label: 'Exit',
                     accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Alt+F4',
@@ -63,6 +82,158 @@ function createWindow() {
     // Create menu
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
+
+    // Setup IPC listeners for code execution
+    setupCodeExecutionListeners(win);
+}
+
+function setupCodeExecutionListeners(mainWindow) {
+    // Execute code from renderer process
+    ipcMain.handle('execute-code', async (event, { language, code }) => {
+        return await executeCode(language, code);
+    });
+}
+
+async function executeCode(language, code) {
+    return new Promise((resolve, reject) => {
+        // Temporary file for code execution
+        const tempDir = os.tmpdir();
+        const timestamp = Date.now();
+        
+        try {
+            switch(language) {
+                case 'python': {
+                    const tempPyFile = path.join(tempDir, `temp_script_${timestamp}.py`);
+                    fs.writeFileSync(tempPyFile, code);
+                    
+                    const pythonProcess = spawn('python3', [tempPyFile]);
+                    
+                    let output = '';
+                    let errorOutput = '';
+                    
+                    pythonProcess.stdout.on('data', (data) => {
+                        output += data.toString();
+                    });
+                    
+                    pythonProcess.stderr.on('data', (data) => {
+                        errorOutput += data.toString();
+                    });
+                    
+                    pythonProcess.on('close', (code) => {
+                        // Clean up temp file
+                        fs.unlinkSync(tempPyFile);
+                        
+                        if (code === 0) {
+                            resolve({ 
+                                success: true, 
+                                output: output.trim(), 
+                                error: null 
+                            });
+                        } else {
+                            resolve({ 
+                                success: false, 
+                                output: null, 
+                                error: errorOutput.trim() 
+                            });
+                        }
+                    });
+                    break;
+                }
+                
+                case 'javascript': {
+                    try {
+                        // Use vm module for safe JavaScript execution
+                        const { VM } = require('vm2');
+                        const vm = new VM({
+                            timeout: 5000,
+                            sandbox: {}
+                        });
+                        
+                        const result = vm.run(code);
+                        resolve({
+                            success: true,
+                            output: result ? result.toString() : 'Execution completed',
+                            error: null
+                        });
+                    } catch (error) {
+                        resolve({
+                            success: false,
+                            output: null,
+                            error: error.toString()
+                        });
+                    }
+                    break;
+                }
+                
+                case 'shell': {
+                    exec(code, { 
+                        maxBuffer: 1024 * 1024,  // 1MB buffer
+                        timeout: 10000  // 10 seconds timeout
+                    }, (error, stdout, stderr) => {
+                        if (error) {
+                            resolve({
+                                success: false,
+                                output: null,
+                                error: error.message
+                            });
+                            return;
+                        }
+                        
+                        resolve({
+                            success: true,
+                            output: stdout.trim(),
+                            error: stderr ? stderr.trim() : null
+                        });
+                    });
+                    break;
+                }
+                
+                default:
+                    reject(new Error('Unsupported language'));
+            }
+        } catch (error) {
+            resolve({
+                success: false,
+                output: null,
+                error: error.toString()
+            });
+        }
+    });
+}
+
+function executeCodePrompt(language) {
+    const mainWindow = BrowserWindow.getFocusedWindow();
+    
+    dialog.showMessageBox(mainWindow, {
+        type: 'question',
+        buttons: ['OK', 'Cancel'],
+        defaultId: 0,
+        title: `Execute ${language.toUpperCase()} Code`,
+        message: `Enter your ${language} code:`,
+        inputType: 'textarea'
+    }).then(result => {
+        if (result.response === 0) {  // OK button
+            const code = result.inputValue;
+            
+            executeCode(language, code)
+                .then(result => {
+                    dialog.showMessageBox(mainWindow, {
+                        type: result.success ? 'info' : 'error',
+                        title: result.success ? 'Execution Successful' : 'Execution Failed',
+                        message: result.success ? 
+                            `Output:\n${result.output}` : 
+                            `Error:\n${result.error}`
+                    });
+                })
+                .catch(error => {
+                    dialog.showMessageBox(mainWindow, {
+                        type: 'error',
+                        title: 'Execution Error',
+                        message: error.toString()
+                    });
+                });
+        }
+    });
 }
 
 function createTerminalWindow() {

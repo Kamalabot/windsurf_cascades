@@ -10,6 +10,8 @@ electronjs_app/
 ├── index.html      # Calculator UI
 ├── styles.css      # Application styling
 ├── renderer.js     # Calculator logic
+├── terminal.html   # Terminal UI layout
+├── terminal.js     # Terminal renderer and interaction logic
 └── package.json    # Project configuration
 ```
 
@@ -34,6 +36,89 @@ electronjs_app/
 - Division
 - Clear function
 - Decimal support
+
+### Terminal Integration
+- Integrated terminal window
+- Supports bash (Linux/macOS) and PowerShell (Windows)
+- Real-time command execution
+- Error and exit status handling
+- Scrollback buffer support
+
+### Code Execution Subprocess
+
+#### Features
+- Execute code directly from the application
+- Supports multiple languages:
+  - Python
+  - JavaScript
+  - Shell commands
+- Secure subprocess management
+- Sandboxed execution environment
+- Error handling and output capturing
+
+#### Execution Methods
+1. **Menu-based Execution**
+   - Navigate to `File > Execute Code`
+   - Choose language:
+     - Run Python Script
+     - Run JavaScript
+     - Run Shell Command
+   - Enter code in popup dialog
+   - View execution results
+
+2. **Programmatic Execution**
+   ```javascript
+   // In renderer process
+   const result = await ipcRenderer.invoke('execute-code', {
+     language: 'python',
+     code: 'print("Hello, World!")'
+   });
+   ```
+
+#### Security Considerations
+- Temporary file creation for Python scripts
+- Timeout mechanisms
+- Sandboxed JavaScript execution
+- Limited buffer size for shell commands
+- Restricted execution time
+
+#### Supported Languages
+##### Python
+- Uses `python3` interpreter
+- Temporary script file generation
+- Captures stdout and stderr
+- Automatic file cleanup
+
+##### JavaScript
+- Uses `vm2` for safe execution
+- Sandboxed environment
+- 5-second execution timeout
+- Prevents access to Node.js internals
+
+##### Shell
+- Executes system commands
+- 10-second timeout
+- 1MB output buffer
+- Captures command output and errors
+
+#### Limitations
+- No persistent state between executions
+- Limited to local machine capabilities
+- Security risks with untrusted code
+- Performance overhead for script execution
+
+#### Best Practices
+- Avoid executing untrusted code
+- Keep scripts short and focused
+- Handle potential errors gracefully
+- Use appropriate language for the task
+
+#### Future Improvements
+- Add more language support
+- Implement more robust sandboxing
+- Create custom execution environments
+- Add syntax highlighting for code input
+- Implement code history and saved scripts
 
 ## Setup Instructions
 
@@ -87,18 +172,27 @@ electronjs_app/
 - Press = to see the result
 - Use C to clear the display
 
+### Terminal Interaction
+- Open a new terminal via menu: `Terminal > New Terminal`
+- Keyboard shortcut:
+  - Windows/Linux: `Ctrl+T`
+  - macOS: `Cmd+T`
+
 ## Development Notes
 - The application uses vanilla JavaScript for calculations
 - All scientific calculations are performed using JavaScript's Math object
 - Geometric calculations include formulas for basic shapes
 - The UI is built with HTML/CSS and features a responsive design
 - Error handling is implemented for invalid inputs
+- Terminal integration uses Electron's `child_process` for terminal spawning and `xterm.js` for terminal rendering and interaction
 
 ## Troubleshooting
 - If the application doesn't start, ensure all dependencies are properly installed
-- Check that all files (main.js, index.html, styles.css, renderer.js) are in the same directory
+- Check that all files (main.js, index.html, styles.css, renderer.js, terminal.html, terminal.js) are in the same directory
 - Verify that the package.json has the correct configuration
 - Make sure you have Node.js and npm installed on your system
+- Ensure Node.js and Electron versions are compatible for terminal integration
+- Check system shell configuration for terminal integration
 
 ## Network Troubleshooting
 
@@ -146,6 +240,8 @@ ping github.com
   - index.html (Calculator UI)
   - styles.css (Styling)
   - renderer.js (Calculator logic)
+  - terminal.html (Terminal UI layout)
+  - terminal.js (Terminal renderer and interaction logic)
 - Package.json initialization
 
 ### Pending 
@@ -166,3 +262,6 @@ ping github.com
 - Include angle mode switching (degrees/radians)
 - Add keyboard support
 - Implement history feature
+- Add more advanced terminal features
+- Implement shell customization options
+- Enhance cross-platform compatibility
