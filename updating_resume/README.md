@@ -37,6 +37,35 @@ pdftoppm -png -r 300 input.pdf output_prefix
 2. Manually recreate the content in the LaTeX template
 3. Ensure formatting and structure match the original document
 
+### Conversion Workflow Block Diagram
+
+```
++-------------------+     +-------------------+     +-------------------+
+|   Original PDF    |     |   Text Extraction |     |   LaTeX Template  |
+|                   | --> |   (pdftotext)     | --> |   (Manual Edit)   |
+|  Kamal_Raj_Resume |     |                   |     |                   |
+|      .pdf         |     |   Preserve Layout |     |  Restructure Data |
++-------------------+     +-------------------+     +-------------------+
+                                                            |
+                                                            v
++-------------------+     +-------------------+     +-------------------+
+|   Compiled PDF    | <-- |   LaTeX Compiler  | <-- |   Updated .tex    |
+|                   |     |   (pdflatex)      |     |   File            |
+|  Final Resume     |     |                   |     |                   |
+|      .pdf         |     |   Generate PDF    |     |  Refined Content  |
++-------------------+     +-------------------+     +-------------------+
+
+Workflow Steps:
+1. Extract text from original PDF
+2. Manually edit and structure in LaTeX template
+3. Compile updated LaTeX file to generate new PDF
+```
+
+### Detailed Workflow Description
+- **Text Extraction**: Use `pdftotext` to preserve layout and extract content
+- **Manual Editing**: Restructure content in LaTeX template, improve formatting
+- **Compilation**: Use `pdflatex` to generate the final PDF document
+
 ### Recommended Tools
 - `pdftotext`: Text extraction
 - `pdftoppm`: PDF to image conversion
