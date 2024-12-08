@@ -1,0 +1,112 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{graphicx}
+\usepackage{tabularx}
+
+% Define custom colors
+\definecolor{darkgray}{gray}{0.2}
+\definecolor{lightgray}{gray}{0.6}
+
+% Custom section formatting
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[1]{\item #1}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+% Adjust page margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\begin{document}
+
+\begin{center}
+    {\Huge \scshape Kamal Raj M M} \\ \vspace{5pt}
+    \textit{Senior Python Developer | Artificial Intelligence SME | AI Research | Data Analytics} \\ \vspace{3pt}
+    \small
+    Contact Information Available Upon Request
+\end{center}
+
+\section{Overview}
+\begin{itemize}[leftmargin=*]
+    \resumeItem{Innovative and detail-oriented Senior Python Consultant with expertise in Data Analysis, Python Development, NLP, and AI Technologies.}
+\end{itemize}
+
+\section{Skills}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Programming Languages:} Python, SQL
+    \item \textbf{AI \& Machine Learning:} PyTorch, Transformers, Langchain, CrewAI
+    \item \textbf{Web Frameworks:} Django, Streamlit
+    \item \textbf{Data Analysis:} Pandas, NumPy, Scikit-learn
+    \item \textbf{Cloud Platforms:} AWS, GCP, Hugging Face Spaces
+    \item \textbf{DevOps \& Tools:} Git, Docker, Linux
+\end{itemize}
+
+\section{Professional Experience}
+\begin{itemize}[leftmargin=*]
+    \resumeSubheading
+      {Independent AI Consultant}{2022 - Present}
+      {Senior Python Developer \& AI Engineer}{Remote}
+      \begin{itemize}[leftmargin=*]
+        \resumeItem{Developed autonomous AI agents using CrewAI framework}
+        \resumeItem{Implemented RAG pipelines with Langchain and vector stores}
+        \resumeItem{Consulted on AI-driven business solutions and automation}
+      \end{itemize}
+
+    \resumeSubheading
+      {AI Project: YouTube Comment Automation}{Aug 2022 - Mar 2023}
+      {Lead Developer}{Remote}
+      \begin{itemize}[leftmargin=*]
+        \resumeItem{Created Django backend integrating YouTube and OpenAI APIs}
+        \resumeItem{Automated comment responses with 200 comments/hour efficiency}
+      \end{itemize}
+\end{itemize}
+
+\section{Key Projects}
+\begin{itemize}[leftmargin=*]
+    \resumeSubheading
+      {Multi-Agent AI Systems}{Jan 2024 - Present}
+      {AI Research \& Development}{Independent}
+      \begin{itemize}[leftmargin=*]
+        \resumeItem{Designed collaborative AI agent architectures}
+        \resumeItem{Implemented advanced task delegation mechanisms}
+      \end{itemize}
+
+    \resumeSubheading
+      {DSPy \& Observability Integration}{July 2024}
+      {Performance Optimization}{Independent}
+      \begin{itemize}[leftmargin=*]
+        \resumeItem{Developed F1 metric scoring for DSPy frameworks}
+        \resumeItem{Integrated Phoenix Server for API tracing}
+      \end{itemize}
+\end{itemize}
+
+\section{Core Competencies}
+\begin{itemize}[leftmargin=*]
+    \resumeItem{AI Agent Development}
+    \resumeItem{Generative AI Solutions}
+    \resumeItem{Technical Consulting}
+    \resumeItem{API Integration}
+    \resumeItem{Performance Optimization}
+\end{itemize}
+
+\end{document}
