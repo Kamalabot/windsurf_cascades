@@ -1,0 +1,47 @@
+name: Notion
+unique_key: notion
+docs:  https://docs.composio.dev/apps/notion
+description: A modern project management tool designed for efficiency and performance.
+logo: https://raw.githubusercontent.com/SamparkAI/open-logos/3589671765c8f385609d8c9039942b2143be5fe3/notion.svg
+categories: [project management, productivity]
+get_current_user_endpoint: /v1/users/me
+auth_schemes:
+  - name: notion_oauth
+    auth_mode: OAUTH2
+    # client_id, client_secret will be provided upon request.
+    # Default parameters and fields are determined based on auth_mode
+    authorization_url: "https://api.notion.com/v1/oauth/authorize"
+    token_url: "https://api.notion.com/v1/oauth/token"
+    default_scopes: []
+    token_response_metadata: [access_token, token_type, scope, expires_in, refresh_token]
+    token_request_auth_method: basic
+    proxy:
+      base_url:  https://api.notion.com
+      headers:
+        Notion-Version: "2022-06-28"
+    authorization_params:
+        response_type: code
+        owner: user
+    token_params:
+        grant_type: authorization_code
+
+  - name: notion_api_key
+    auth_mode: API_KEY
+
+    api_tags:
+      - name: Board_addChecklists
+        tags: ["important"]
+
+    proxy:
+      base_url: https://api.notion.com
+      headers:
+        Authorization: "Bearer {{api_key}}}"
+        Notion-Version: "2022-06-28"
+
+    fields:
+      - name: api_key
+        expected_from_customer: true 
+        display_name: API Key
+        description: "Your notion API key for authentication. Obtain it from your notion settings."
+        type: string
+        required: false

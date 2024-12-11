@@ -1,0 +1,28 @@
+name: SalesDB
+unique_key: local 
+docs:  http://127.0.0.1:8000/docs
+description: A modern database tool designed for efficiency and performance.
+logo: https://raw.githubusercontent.com/SamparkAI/open-logos/3589671765c8f385609d8c9039942b2143be5fe3/notion.svg
+categories: [database, storage]
+# get_current_user_endpoint: /v1/users/me
+auth_schemes:
+  - name: SalesDB_API 
+    auth_mode: API_KEY
+
+    api_tags:
+      - name: Board_addChecklists
+        tags: ["important"]
+
+    proxy:
+      base_url: http://127.0.0.1:8000
+      headers:
+        Authorization: "Bearer eLE32CX8wxkov9N1NX8AdThsDEFC3ZRaHyEJ74XuvVM"
+        Api-Version: "2022-06-28"
+
+    fields:
+      - name: api_key
+        expected_from_customer: true 
+        display_name: API Key
+        description: "Your serve API key for authentication. Obtain it from your notion settings."
+        type: string
+        required: false
