@@ -116,7 +116,7 @@ uvicorn app.main:app --reload
 
 ## Using the Python Client
 
-The project includes a Python client library (`sales_client.py`) that provides an easy way to interact with the API:
+The project includes a Python client library (`sales_client.py`) that provides an easy way to interact with the API. The client supports both JWT token and API key authentication methods:
 
 ```python
 from sales_client import SalesAPIClient
@@ -124,13 +124,21 @@ from sales_client import SalesAPIClient
 # Create client instance
 client = SalesAPIClient("http://localhost:8000")
 
-# Option 1: Use email/password authentication
-client.login("user@example.com", "password123")
+# Option 1: Login with email/password (JWT token)
+if client.login("user@gmail.com", "1234"):
+    print("Successfully logged in with credentials!")
+    
+    # Generate an API key for future use
+    api_key = client.generate_api_key()
+    if api_key:
+        print(f"Generated new API key: {api_key}")
 
-# Option 2: Use API key authentication
-client = SalesAPIClient("http://localhost:8000", api_key="your-api-key")
+# Option 2: Login with API key
+api_key = "your-api-key-here"
+if client.login_with_api_key(api_key):
+    print("Successfully logged in with API key!")
 
-# Use the client
+# Use the client after successful authentication
 sales = client.list_sales()
 sale = client.get_sale(1)
 new_sale = client.create_sale({
@@ -142,6 +150,55 @@ new_sale = client.create_sale({
     "customer_name": "Test Customer"
 })
 ```
+
+### Client Authentication Methods
+
+The client provides several authentication-related methods:
+
+1. `login(email: str, password: str) -> bool`: 
+   - Authenticates using email and password
+   - Returns True if successful, False otherwise
+   - Automatically sets the JWT token for future requests
+
+2. `login_with_api_key(api_key: str) -> bool`:
+   - Authenticates using an API key
+   - Returns True if successful, False otherwise
+   - Automatically sets the API key for future requests
+
+3. `generate_api_key() -> Optional[str]`:
+   - Generates a new API key for the authenticated user
+   - Requires prior authentication with JWT token
+   - Returns the new API key if successful, None otherwise
+
+### Error Handling
+
+The client includes built-in error handling and validation:
+- Authentication failures are caught and reported
+- API errors are handled gracefully with informative messages
+- Network errors are caught and reported to the user
+
+### Best Practices
+
+1. Always check the return value of authentication methods:
+```python
+if client.login_with_api_key(api_key):
+    # Proceed with authenticated requests
+else:
+    # Handle authentication failure
+```
+
+2. Generate and store API keys for long-term use:
+```python
+# First, login with credentials
+if client.login("user@gmail.com", "1234"):
+    # Then generate an API key
+    api_key = client.generate_api_key()
+    if api_key:
+        # Store this API key securely for future use
+        print(f"Save this API key: {api_key}")
+```
+
+3. Use API keys for automated scripts and JWT tokens for interactive sessions
 
 ## API Usage Examples
 
