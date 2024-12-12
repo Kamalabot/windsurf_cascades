@@ -1,0 +1,5 @@
+prompt-toolkit
+websockets
+asyncio
+pyfiglet
+rich
